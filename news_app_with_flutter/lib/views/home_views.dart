@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_with_flutter/models/categoryModels.dart';
-import 'package:news_app_with_flutter/widgets/categoryCard.dart';
+import 'package:news_app_with_flutter/views/listViewsVerical.dart';
+import 'package:news_app_with_flutter/views/listviewHorizontal.dart';
+import 'package:news_app_with_flutter/widgets/news_tile.dart';
 
 class HomeViews extends StatefulWidget {
   const HomeViews({super.key});
@@ -10,7 +12,7 @@ class HomeViews extends StatefulWidget {
 }
 
 class _HomeViewsState extends State<HomeViews> {
-  List<CategoryModels> categories = const [
+  List<CategoryModels> categoriesList = const [
     CategoryModels(
       nameCategory: "Sport",
       image: "assets/sportnews.webp",
@@ -40,63 +42,24 @@ class _HomeViewsState extends State<HomeViews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "News",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              " Cloud",
-              style: TextStyle(color: Color.fromARGB(255, 240, 200, 80)),
-            ),
-            Text(' by salim boughanmi')
-          ],
+        appBar: AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "News",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                " Cloud",
+                style: TextStyle(color: Color.fromARGB(255, 240, 200, 80)),
+              ),
+              Text(' by salim boughanmi')
+            ],
+          ),
         ),
-      ),
-      body: Container(
-        height: 200,
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Category_card(
-              categoryMCard: categories[index],
-            );
-          },
-          itemCount: categories.length,
-          scrollDirection: Axis.horizontal,
-        ),
-      ),
-    );
+        body: /*  ListViewvHorizontal(Categories: categoriesList),  */
+
+            listViewsVertical());
   }
 }
-/*  ListView(
-          scrollDirection: Axis.horizontal,
-          children: [
-            Category_card(
-              text: "Sport",
-              image: "assets/sportnews.webp",
-            ),
-            Category_card(
-              text: "Health",
-              image: "assets/health.avif",
-            ),
-            Category_card(
-              text: "Science",
-              image: "assets/science.avif",
-            ),
-            Category_card(
-              text: "Thecnology",
-              image: "assets/technology.jpeg",
-            ),
-            Category_card(
-              text: "Entertaiment",
-              image: "assets/entertaiment.avif",
-            ),
-            Category_card(
-              text: "General",
-              image: "assets/generalnews.png",
-            ),
-          ],
-        ), */
