@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_with_flutter/models/categoryModels.dart';
 import 'package:news_app_with_flutter/widgets/categoryCard.dart';
 
 class HomeViews extends StatefulWidget {
@@ -9,6 +10,33 @@ class HomeViews extends StatefulWidget {
 }
 
 class _HomeViewsState extends State<HomeViews> {
+  List<CategoryModels> categories = const [
+    CategoryModels(
+      nameCategory: "Sport",
+      image: "assets/sportnews.webp",
+    ),
+    CategoryModels(
+      nameCategory: "Health",
+      image: "assets/health.avif",
+    ),
+    CategoryModels(
+      nameCategory: "Science",
+      image: "assets/science.avif",
+    ),
+    CategoryModels(
+      nameCategory: "Thecnology",
+      image: "assets/technology.jpeg",
+    ),
+    CategoryModels(
+      nameCategory: "Entertaiment",
+      image: "assets/entertaiment.avif",
+    ),
+    CategoryModels(
+      nameCategory: "General",
+      image: "assets/generalnews.png",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +58,20 @@ class _HomeViewsState extends State<HomeViews> {
       ),
       body: Container(
         height: 200,
-        child: ListView(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return Category_card(
+              categoryMCard: categories[index],
+            );
+          },
+          itemCount: categories.length,
+          scrollDirection: Axis.horizontal,
+        ),
+      ),
+    );
+  }
+}
+/*  ListView(
           scrollDirection: Axis.horizontal,
           children: [
             Category_card(
@@ -53,9 +94,9 @@ class _HomeViewsState extends State<HomeViews> {
               text: "Entertaiment",
               image: "assets/entertaiment.avif",
             ),
+            Category_card(
+              text: "General",
+              image: "assets/generalnews.png",
+            ),
           ],
-        ),
-      ),
-    );
-  }
-}
+        ), */
