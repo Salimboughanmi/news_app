@@ -59,33 +59,42 @@ class _HomeViewsState extends State<HomeViews> {
           ),
         ),
         body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: CustomScrollView(
+              // scroll pour tout le ui (avec le vertical scroll) ,donc CustomScrollView additonner 2  list view
+              physics:
+                  const BouncingScrollPhysics(), // le scroll pour les deux , vertical + horizontal
               slivers: [
                 SliverToBoxAdapter(
+                  //le type de CustomScrollView additonner SliverToBoxAdapter
                   child: ListViewvHorizontal(Categories: categoriesList),
                 ),
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: SizedBox(
                     height: 13,
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Expanded(
-                    child: listViewsVertical(),
-                  ),
-                ),
+                /*  const SliverToBoxAdapter(
+/*                    child: Expanded (  // CustomScrollView n'accepte pas Expanded
+ */
+                  child: listViewsVertical(),
+                ), */
+                /* ), */
+//autre exemple avec SliverList pour le scroll --> plus performance
+// donc nous avons remplacer SliverToBoxAdapter de code precedent par Silver List
+// il remplace ListView.builder de ListViewsVertical easyyy :)
+//cette methode SliverList return les list de newstile de mm facons de .builder de list view
+// je prendre cette methode SliverList et le replacer dans listview vertical dans la place de return ListView.builder
+// je mis l'encien code dans un commaintaire ;)
+                /* SliverList(
+                  delegate: SliverChildBuilderDelegate(childCount: 2,
+                      (context, index) {
+                    return const NewsTile();
+                  }),
+                ), */
+
+                listViewsVertical(),
               ],
-            )
-            /* Column(
-            children: [
-              ListViewvHorizontal(Categories: categoriesList),
-              SizedBox(
-                height: 13,
-              ),
-              const Expanded(child: listViewsVertical()),
-            ],
-          ), */
-            ));
+            )));
   }
 }
