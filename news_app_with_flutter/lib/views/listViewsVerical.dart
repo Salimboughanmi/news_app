@@ -9,6 +9,8 @@ class listViewsVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        physics:
+            BouncingScrollPhysics(), // quand nous aons scroller il y a un bouncing in the end of screen
         itemCount: 5,
         itemBuilder: (context, index) {
           return const Padding(

@@ -58,8 +58,34 @@ class _HomeViewsState extends State<HomeViews> {
             ],
           ),
         ),
-        body: /*  ListViewvHorizontal(Categories: categoriesList),  */
-
-            listViewsVertical());
+        body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: ListViewvHorizontal(Categories: categoriesList),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 13,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Expanded(
+                    child: listViewsVertical(),
+                  ),
+                ),
+              ],
+            )
+            /* Column(
+            children: [
+              ListViewvHorizontal(Categories: categoriesList),
+              SizedBox(
+                height: 13,
+              ),
+              const Expanded(child: listViewsVertical()),
+            ],
+          ), */
+            ));
   }
 }
