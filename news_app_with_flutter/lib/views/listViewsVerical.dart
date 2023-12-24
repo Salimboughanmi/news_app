@@ -36,8 +36,8 @@ class listViewsVertical extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(childCount: 2, (context, index) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: const NewsTile(),
+          padding: EdgeInsets.only(bottom: 20),
+          child: NewsTile(),
         );
       }),
     );
