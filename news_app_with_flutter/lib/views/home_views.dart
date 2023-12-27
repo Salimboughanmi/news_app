@@ -5,6 +5,7 @@ import 'package:news_app_with_flutter/models/categoryModels.dart';
 import 'package:news_app_with_flutter/services/news_service.dart';
 import 'package:news_app_with_flutter/views/listViewsVerical.dart';
 import 'package:news_app_with_flutter/views/listviewHorizontal.dart';
+import 'package:news_app_with_flutter/widgets/News_listViewBuilder.dart';
 
 class HomeViews extends StatefulWidget {
   const HomeViews({super.key});
@@ -92,48 +93,11 @@ class _HomeViewsState extends State<HomeViews> {
                   delegate: SliverChildBuilderDelegate(childCount: 2,
                       (context, index) {
                     return const NewsTile();
-                  }),
+                  }),   
                 ), */
 
                 NewsListViewVerticalBuilder(),
               ],
             )));
-  }
-}
-
-class NewsListViewVerticalBuilder extends StatefulWidget {
-  const NewsListViewVerticalBuilder({
-    super.key,
-  });
-
-  @override
-  State<NewsListViewVerticalBuilder> createState() =>
-      _NewsListViewVerticalBuilderState();
-}
-
-class _NewsListViewVerticalBuilderState
-    extends State<NewsListViewVerticalBuilder> {
-  List<ArticleModel> myArticals = [];
-  bool isLoading = true;
-  @override
-  void initState() {
-    // on ne peut pas mettre async avec initstate
-
-    super.initState();
-    getGeneralNews();
-  }
-
-  Future<void> getGeneralNews() async {
-    myArticals = await NewsService(Dio()).getNews();
-    isLoading = false;
-
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return listViewsVertical(
-      myArticals: myArticals,
-    );
   }
 }
