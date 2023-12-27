@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_with_flutter/models/article_model.dart';
 
 // cached network image
 class NewsTile extends StatelessWidget {
-  const NewsTile({
-    super.key,
-    /*  required this.articleModel */
-  });
+  const NewsTile({super.key, required this.articleModels});
 
-  //final ArticleModel articleModel;
+  final ArticleModel articleModels;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,8 +15,7 @@ class NewsTile extends StatelessWidget {
             // donner des feature pour image
             borderRadius: BorderRadius.circular(6),
             child: Image.network(
-              "https://as2.ftcdn.net/v2/jpg/03/58/64/81/1000_F_358648159_g5EiHqpnkipQJCXBTTzZlFiymLpMlYDH.jpg",
-              //articleModel.image!,
+              articleModels.image ?? '',
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -27,8 +24,7 @@ class NewsTile extends StatelessWidget {
           height: 12,
         ),
         Text(
-          "hahahahahahhahahahahahahhahahahahahah",
-          //articleModel.title,
+          articleModels.title,
           maxLines: 2,
           overflow: TextOverflow
               .ellipsis, // si n'est pas espace pour image faire trois pts avec ellipsis
@@ -42,8 +38,7 @@ class NewsTile extends StatelessWidget {
           height: 8,
         ),
         Text(
-          "0dsdsqdqfdqfdsqfsdfsdf",
-          //articleModel.subTitle ?? '',
+          articleModels.subTitle ?? '',
           maxLines: 2,
           style: const TextStyle(color: Colors.grey, fontSize: 14),
         )
