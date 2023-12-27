@@ -41,32 +41,37 @@ class listViewsVertical extends StatefulWidget {
 
 class _listViewsVerticalState extends State<listViewsVertical> {
   List<ArticleModel> myArticals = [];
+  bool isLoading = true;
   @override
   void initState() {
     // on ne peut pas mettre async avec initstate
-    super.initState();
 
+    super.initState();
     getGeneralNews();
   }
 
   Future<void> getGeneralNews() async {
     myArticals = await NewsService(Dio()).getNews();
+    isLoading = false;
+
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      // remplacer listview.buillder
-      delegate: SliverChildBuilderDelegate(childCount: myArticals.length,
-          (context, index) {
-        return Padding(
-          padding: EdgeInsets.only(bottom: 20),
-          child: NewsTile(
-            articleModels: myArticals[index],
-          ),
-        );
-      }),
-    );
+    return isLoading
+        ? SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()))
+        : SliverList(
+            // SliverList remplacer listview.buillder
+            delegate: SliverChildBuilderDelegate(childCount: myArticals.length,
+                (context, index) {
+              return Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: NewsTile(
+                  articleModels: myArticals[index],
+                ),
+              );
+            }),
+          );
   }
 }
