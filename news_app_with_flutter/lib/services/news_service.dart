@@ -25,6 +25,8 @@ class NewsService {
         articaList.add(articlModel);
       }
       return articaList;
-    } catch (e) {}
+    } catch (e) {
+      return [];
+    }
   }
 }
