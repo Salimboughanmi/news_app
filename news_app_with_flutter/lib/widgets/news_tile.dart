@@ -12,14 +12,17 @@ class NewsTile extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         ClipRRect(
-            // donner des feature pour image
-            borderRadius: BorderRadius.circular(6),
-            child: Image.network(
-              articleModels.image ?? '',
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            )),
+          borderRadius: BorderRadius.circular(6),
+          child: Image.network(
+            // Use a conditional operator to check if articleModels.image is null
+            // If it is null, use the fallback URL, otherwise use the actual URL
+            articleModels.image ??
+                "https://fr.dreamstime.com/illustration-stock-oops-image56744303",
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
         const SizedBox(
           height: 12,
         ),

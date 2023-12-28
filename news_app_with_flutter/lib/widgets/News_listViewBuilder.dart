@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app_with_flutter/models/article_model.dart';
 import 'package:news_app_with_flutter/services/news_service.dart';
 import 'package:news_app_with_flutter/views/listViewsVerical.dart';
 
-class NewsListViewVerticalBuilder extends StatefulWidget {
+/* class NewsListViewVerticalBuilder extends StatefulWidget {
   const NewsListViewVerticalBuilder({
     super.key,
   });
@@ -32,14 +31,38 @@ class _NewsListViewVerticalBuilderState
 
     setState(() {});
   }
+ */
+
+class NewsListViewVerticalBuilder extends StatelessWidget {
+  const NewsListViewVerticalBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
+    return FutureBuilder(
+      //reabuild widget qui va le retourner selon request sans setstate
+      future: NewsService(Dio()).getNews(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return listViewsVertical(myArticals: snapshot.data!);
+        } else if (snapshot.hasError) {
+          return const SliverToBoxAdapter(
+            child: Text("oops there is no data"),
+          );
+        } else {
+          return SliverToBoxAdapter(
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+      },
+    );
+    /* return isLoading
         ? const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()))
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
         : listViewsVertical(
             myArticals: myArticals,
-          );
+          ); */
   }
 }
