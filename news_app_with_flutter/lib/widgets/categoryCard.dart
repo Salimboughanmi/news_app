@@ -12,7 +12,7 @@ class Category_card extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
-            return const CategoryView();
+            return CategoryView(categ: categoryMCard.nameCategory);
           }),
         );
       },

@@ -14,27 +14,27 @@ class HomeViews extends StatefulWidget {
 class _HomeViewsState extends State<HomeViews> {
   List<CategoryModels> categoriesList = const [
     CategoryModels(
-      nameCategory: "Sport",
+      nameCategory: "sports",
       image: "assets/sportnews.webp",
     ),
     CategoryModels(
-      nameCategory: "Health",
+      nameCategory: "health",
       image: "assets/health.avif",
     ),
     CategoryModels(
-      nameCategory: "Science",
+      nameCategory: "science",
       image: "assets/science.avif",
     ),
     CategoryModels(
-      nameCategory: "Thecnology",
+      nameCategory: "technology",
       image: "assets/technology.jpeg",
     ),
     CategoryModels(
-      nameCategory: "Entertaiment",
+      nameCategory: "entertainment",
       image: "assets/entertaiment.avif",
     ),
     CategoryModels(
-      nameCategory: "General",
+      nameCategory: "general",
       image: "assets/generalnews.png",
     ),
   ];
@@ -93,7 +93,9 @@ class _HomeViewsState extends State<HomeViews> {
                   }),   
                 ), */
 
-                NewsListViewVerticalBuilder(),
+                NewsListViewVerticalBuilder(
+                  category: 'general',
+                ),
               ],
             )));
   }

@@ -35,7 +35,9 @@ class _NewsListViewVerticalBuilderState
  */
 
 class NewsListViewVerticalBuilder extends StatefulWidget {
-  const NewsListViewVerticalBuilder({super.key});
+  const NewsListViewVerticalBuilder({super.key, required this.category});
+
+  final String category;
 
   @override
   State<NewsListViewVerticalBuilder> createState() =>
@@ -47,7 +49,7 @@ class _NewsListViewVerticalBuilderState
   var future;
   @override
   void initState() {
-    future = NewsService(Dio()).getNews();
+    future = NewsService(Dio()).getNews(category: widget.category);
     super.initState();
   }
 
