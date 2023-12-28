@@ -1,9 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app_with_flutter/models/article_model.dart';
 import 'package:news_app_with_flutter/models/categoryModels.dart';
-import 'package:news_app_with_flutter/services/news_service.dart';
-import 'package:news_app_with_flutter/views/listViewsVerical.dart';
+
 import 'package:news_app_with_flutter/views/listviewHorizontal.dart';
 import 'package:news_app_with_flutter/widgets/News_listViewBuilder.dart';
 

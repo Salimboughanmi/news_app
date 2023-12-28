@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app_with_flutter/models/article_model.dart';
 import 'package:news_app_with_flutter/services/news_service.dart';
 import 'package:news_app_with_flutter/views/listViewsVerical.dart';
 
@@ -33,14 +34,28 @@ class _NewsListViewVerticalBuilderState
   }
  */
 
-class NewsListViewVerticalBuilder extends StatelessWidget {
+class NewsListViewVerticalBuilder extends StatefulWidget {
   const NewsListViewVerticalBuilder({super.key});
 
   @override
+  State<NewsListViewVerticalBuilder> createState() =>
+      _NewsListViewVerticalBuilderState();
+}
+
+class _NewsListViewVerticalBuilderState
+    extends State<NewsListViewVerticalBuilder> {
+  var future;
+  @override
+  void initState() {
+    future = NewsService(Dio()).getNews();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<ArticleModel>>(
       //reabuild widget qui va le retourner selon request sans setstate
-      future: NewsService(Dio()).getNews(),
+      future: future,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return listViewsVertical(myArticals: snapshot.data!);
